@@ -1,0 +1,32 @@
+<img src="../../assets/game-bg.jpg" class="background-image">
+<div class="game-container">
+  <h1 class="game-title">SNAKE GAME</h1>
+  <div class="score">Pontuação: {{ score }}</div>
+  <!-- Resto do código -->
+  <div class="game-container">
+
+    <div class="game-board" [style.width.px]="gridSize * tileSize" [style.height.px]="gridSize * tileSize">
+      <!-- Cobrinha -->
+      <div *ngFor="let segment of snake" class="snake-segment" [style.left.px]="segment.x * tileSize"
+        [style.top.px]="segment.y * tileSize"></div>
+
+      <!-- Comida -->
+      <div class="food" [style.left.px]="food.x * tileSize" [style.top.px]="food.y * tileSize"></div>
+    </div>
+
+    <!-- Tela de Game Over -->
+    <div *ngIf="gameOver" class="game-over">
+      <h2>Fim de Jogo</h2>
+      <p>Pontuação final: {{ score }}</p>
+      <button (click)="startGame()">Jogar Novamente</button>
+    </div>
+
+    <!-- Controles (opcional para mobile) -->
+    <div class="controls" *ngIf="!gameOver">
+      <button (click)="changeDirection('UP')">↑</button>
+      <button (click)="changeDirection('LEFT')">←</button>
+      <button (click)="changeDirection('DOWN')">↓</button>
+      <button (click)="changeDirection('RIGHT')">→</button>
+    </div>
+  </div>
+</div>
